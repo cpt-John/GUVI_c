@@ -1,0 +1,44 @@
+#include <stdio.h>
+#define MAX_LEN 100
+
+void de_que(int arr_n[], int *len)
+{
+    if (*len == 0)
+    {
+        printf("Empty list");
+        return;
+    }
+    for (int i = 0; i < *len - 1; i++)
+    {
+        arr_n[i] = arr_n[i + 1];
+    }
+    *len = *len - 1;
+}
+void en_que(int n, int arr_n[], int *len)
+{
+    if (*len == MAX_LEN)
+    {
+        printf("list full");
+        return;
+    }
+    arr_n[*len] = n;
+    *len = *len + 1;
+}
+void print_arr(int arr_n[], int len)
+{
+    for (int i = 0; i < len; i++)
+    {
+        printf("%d,", arr_n[i]);
+    }
+}
+int main()
+{
+    int arry[MAX_LEN] = {1, 2, 3};
+    int length = 3;
+    //implete method to get array
+    en_que(64, arry, &length);
+    en_que(44, arry, &length);
+    de_que(arry, &length);
+    print_arr(arry, length);
+    return 0;
+}
