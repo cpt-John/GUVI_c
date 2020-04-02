@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int find_offset(int ar1[], int ar2[],int len)
+{
+    int offset = 0;
+    int sN = ar1[0];
+    
+    for (int i = 0; i < len; i++)
+    {
+        if (sN == ar2[i])
+        {
+            return offset;
+        }
+        offset++;
+    }
+    return -1;
+}
+
+int check_rotated(int ar1[], int ar2[], int offset ,int len)
+{
+
+    for (int i = 0; i < len; i++)
+    {
+        int n_offset = (i + offset) % len;
+        if (ar1[i] != ar2[n_offset])
+            return 0;
+    }
+    return 1;
+}
+int main()
+{
+    int arry1[] = {1, 2, 3};
+    int arry2[] = {1, 2, 2};
+    //make sure arrays of equal length
+    int length = sizeof(arry1) / sizeof(arry1[0]);
+    int offset = find_offset(arry1, arry2,length);
+    int result = check_rotated(arry1, arry2, offset,length);
+    if (result)
+        printf("rotated");
+    else
+        printf("not rotated");
+    return 0;
+}
